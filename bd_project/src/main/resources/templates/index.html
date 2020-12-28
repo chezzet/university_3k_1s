@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="#" method="post" th:action="@{/view}" th:object="${roomDTO}">
+        <input type="text" th:field="*{name}">
+        <input type="text" th:field="*{description}">
+        <input type="number" th:field="*{capacity}">
+        <button type="submit">Submit</button>
+    </form>
+
+<table border="1px">
+    <tbody>
+    <tr th:each="room: ${all}">
+        <td th:text="${room.id.toString()}" margin="1px"/>
+        <td th:text="${room.name}" margin="1px"/>
+        <td th:text="${room.description}" margin="1px"/>
+        <td th:text="${room.capacity}" margin="1px"/>
+        <td>
+            <form action="#" th:action="@{'/room/delete/{id}'(id=${room.id})}" th:method="post" >
+                <input type="hidden" name="_method" value="post" />
+                <button type="submit" id="submitButton"> Delete </button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
